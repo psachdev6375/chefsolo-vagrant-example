@@ -1,0 +1,29 @@
+Vagrant.configure(2) do |config|
+	config.vm.define "dbserver" do |dbnode|
+		dbnode.vm.box = "ubuntu/trusty64"
+		dbnode.vm.network "private_network", ip: "192.168.0.7"
+		dbnode.vm.provider "virtualbox" do |dbnodev|
+			dbnodev.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+		end
+		dbnode.vm.hostname = "dbserver.puneet.com"
+		dbnode.vm.provision "chef_solo" do |chef|
+    		#chef.add_recipe "dbserver-cookbook"
+    		  chef.roles_path = "roles"
+                  chef.add_role("dbserver")
+  		end
+	end
+        config.vm.define "apiserver" do |apinode|
+                apinode.vm.box = "doneapi-base"
+                apinode.vm.network "private_network", ip: "192.168.0.8"
+                apinode.vm.provider "virtualbox" do |apinodev|
+                        apinodev.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+                        apinodev.memory=4096
+                end
+                apinode.vm.hostname = "apiserver.puneet.com"
+                apinode.vm.provision "chef_solo" do |chef|
+                  chef.roles_path = "roles"
+                  chef.add_role("apiserver")
+                end
+        end
+
+end

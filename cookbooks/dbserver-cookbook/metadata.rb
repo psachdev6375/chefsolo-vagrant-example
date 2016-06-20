@@ -1,0 +1,10 @@
+name 'dbserver-cookbook'
+maintainer 'The Authors'
+maintainer_email 'you@example.com'
+license 'all_rights'
+description 'Installs/Configures dbserver-cookbook'
+long_description 'Installs/Configures dbserver-cookbook'
+version '0.1.3'
+depends 'apt'
+depends 'mysql'
+

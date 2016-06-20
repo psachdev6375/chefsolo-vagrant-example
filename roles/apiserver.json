@@ -1,0 +1,11 @@
+{
+   "name": "apiserver",
+   "default_attributes": {
+   },
+   "json_class": "Chef::Role",
+   "run_list": ["recipe[apiserver-cookbook]"],
+   "description": "apiserver role that installs apiserver-cookbook",
+   "chef_type": "role",
+   "override_attributes": {
+   }
+}
