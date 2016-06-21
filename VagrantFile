@@ -7,7 +7,6 @@ Vagrant.configure(2) do |config|
 		end
 		dbnode.vm.hostname = "dbserver.puneet.com"
 		dbnode.vm.provision "chef_solo" do |chef|
-    		#chef.add_recipe "dbserver-cookbook"
     		  chef.roles_path = "roles"
                   chef.add_role("dbserver")
   		end
